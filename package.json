@@ -1,0 +1,36 @@
+{
+  "name": "its",
+  "version": "1.0.0",
+  "description": "inventory tracking system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Thanh Bui",
+  "license": "ISC",
+  "dependencies": {
+    "MD5": "^1.3.0",
+    "body-parser": "^1.16.0",
+    "express": "~4.12.2",
+    "lodash": "^4.17.4",
+    "mysql": "^2.12.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.9.0",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.15.0",
+    "webpack-node-externals": "^1.5.4"
+  }
+}
