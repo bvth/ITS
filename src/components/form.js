@@ -1,25 +1,9 @@
 import React from 'react'
-import _ from 'lodash'
+
 export default class Form extends React.Component{
     constructor(){
         super();
-        this.Click = this.handleClick.bind(this);
         this.Submit = this.handleSubmit.bind(this);
-    }
-    handleClick(event){
-        event.preventDefault();
-        var self = this;
-        fetch('/users',{
-            method:'GET',
-            headers:{'Content-Type': 'text/plain'}
-        }).then(function(response){
-            return response.json()
-        }).then(function(body){
-            _.map(body.Users,(x,i)=>
-                document.getElementById('mess').innerHTML = body.Users[i].user_email
-                // console.log(body.Users[i].user_email)
-            )
-        })
     }
     handleSubmit(event){
         event.preventDefault();
@@ -27,6 +11,9 @@ export default class Form extends React.Component{
         var details = {
             'username': self.refs.username.value,
             'password': self.refs.password.value,
+            'name': self.refs.name.value,
+            'level': self.refs.level.value,
+            'dep': self.refs.dep.value
         }
         var formBody = [];
         for (var property in details) {
@@ -35,7 +22,6 @@ export default class Form extends React.Component{
             formBody.push(encodedKey + "=" + encodedValue);
         }
         formBody = formBody.join("&");
-        console.log(formBody);
         //=========fetch========//
         fetch('/users',{
             method: 'POST',
@@ -54,11 +40,12 @@ export default class Form extends React.Component{
     render(){
         return(
             <div >
-                <button onClick={this.Click}>Clickclick</button>
-                <span id='mess'></span>
                 <form id="form" onSubmit={this.Submit}>
-                    <input type="text" placeholder='username' ref="username"/>
-                    <input type="password" placeholder='password' ref="password"/>
+                    <input type="text" placeholder='username' ref="username" required/>
+                    <input type="password" placeholder='password' ref="password" required/>
+                    <input type="text" placeholder="name" ref="name" required/>
+                    <input type="text" placeholder="level" ref="level" required/>
+                    <input type="text" placeholder="department" ref="dep" required/>
                     <button type="submit">Submit</button>
                 </form>
             </div>

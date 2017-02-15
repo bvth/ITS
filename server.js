@@ -7,13 +7,24 @@ var app  = express();
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
 var compiler = webpack(webpackConfig);
+const path = require('path');
 
 app.use(require("webpack-dev-middleware")(compiler, {
     noInfo: true, publicPath: webpackConfig.output.publicPath
 }));
 
 app.use(require("webpack-hot-middleware")(compiler));
-app.use(express.static('./'));
+app.use(express.static(path.join(__dirname, 'public'), {
+  dotfiles: 'ignore',
+  index: false
+}));
+
+app.get('*', function(req, res, next) {
+  console.log('Request: [GET]', req.originalUrl)
+  // console.log(req);
+  // res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 function REST(){
     var self = this;
@@ -34,6 +45,11 @@ REST.prototype.connectMysql = function() {
     var self = this;
     var pool      =    mysql.createPool({
         connectionLimit : 100,
+        // host: '192.168.149.104',
+        // path: '/phpmyadmin',
+        // user     : 'root',
+        // password : '',
+        // database : 'inventory',
         host     : 'mysql.cc.puv.fi',
         user     : 'e1300501',
         password : '38ZWfz4EhBEw',

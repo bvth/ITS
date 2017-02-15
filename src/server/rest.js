@@ -7,13 +7,13 @@ function REST_ROUTER(router,connection,md5) {
 //=====check connection=====//
 REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
     var self = this;
-    router.get("/",function(req,res){
+    router.get("/hello",function(req,res){
         res.json({"Message" : "Hello World !"});
     });
 //=====show accounts=====//
-    router.get("/users",function(req,res){
+    router.post("/show",function(req,res){
         var query = "SELECT * FROM ??";
-        var table = ["user_login"];
+        var table = ["account"];
         query = mysql.format(query,table);
         connection.query(query,function(err,rows){
             if(err) {
@@ -38,8 +38,9 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
     });
 //======Add account=====//
     router.post("/users",function(req,res){
-        var query = "INSERT INTO ??(??,??) VALUES (?,?)";
-        var table = ["account","username","password",req.body.username,md5(req.body.password)];
+        var query = "INSERT INTO ??(??,??,??,??,??) VALUES (?,?,?,?,?)";
+        var table = ["account","username","password","name","level","department",
+                        req.body.username,md5(req.body.password),req.body.name,req.body.level,req.body.dep];
         query = mysql.format(query,table);
         console.log(req.body.username,req.body.password, md5(req.body.password));
         connection.query(query,function(err,rows){
