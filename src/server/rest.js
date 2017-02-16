@@ -23,8 +23,22 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     });
+//=====LOG_IN=====//
+    router.post('/login',function(req,res){
+        var query = "SELECT ?? FROM ?? WHERE ??=? AND ??=?";
+        var table = ['level','account','username',req.body.username,'password',md5(req.body.password)];
+        query = mysql.format(query,table);
+        connection.query(query,function(err,rows){
+            if(err){
+                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
+            }
+            else {
+                res.json({"Error" : false, "Message" : "Success", "Users" : rows});
+            }
+        })
+    })
 //=====show account with ID=====//
-    router.get("/users/:user_id",function(req,res){
+    router.post("/users/:user_id",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
         var table = ["user_login","user_id",req.params.user_id];
         query = mysql.format(query,table);

@@ -41,11 +41,11 @@ export default class Form extends React.Component{
         return(
             <div >
                 <form id="form" onSubmit={this.Submit}>
-                    <input type="text" placeholder='username' ref="username" required/>
-                    <input type="password" placeholder='password' ref="password" required/>
-                    <input type="text" placeholder="name" ref="name" required/>
-                    <input type="text" placeholder="level" ref="level" required/>
-                    <input type="text" placeholder="department" ref="dep" required/>
+                    <input type="text" placeholder='username' ref="username" required/><br/>
+                    <input type="password" placeholder='password' ref="password" required/><br/>
+                    <input type="text" placeholder="name" ref="name" required/><br/>
+                    <input type="text" placeholder="level" ref="level" required/><br/>
+                    <input type="text" placeholder="department" ref="dep" required/><br/>
                     <button type="submit">Submit</button>
                 </form>
             </div>
