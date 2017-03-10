@@ -7,7 +7,7 @@ function REST_ROUTER(router,connection,md5) {
 //=====check connection=====//
 REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
     var self = this;
-    router.get("/hello",function(req,res){
+    router.post("/hello",function(req,res){
         res.json({"Message" : "Hello World !"});
     });
 //=====show accounts=====//

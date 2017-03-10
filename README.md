@@ -9,6 +9,8 @@ Technology/library used in this project:
 - NodeJS
 - Express
 - MySQL
+- Webpack
+- MD5
 
 INSTALLATION
 Require NodeJS
