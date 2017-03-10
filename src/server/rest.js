@@ -130,7 +130,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     });
-//======deleet account=====//
+//======delete account=====//
     router.delete("/users/:email",function(req,res){
         var query = "DELETE from ?? WHERE ??=?";
         var table = ["user_login","user_email",req.params.email];

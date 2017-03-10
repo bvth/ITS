@@ -47,8 +47,8 @@ export default class LogIn extends React.Component{
             <div className="intro">
             <h1>Inventory Tracking System</h1>
             <form className="login" onSubmit={this.Login}>
-                <input className="login_username" placeholder="username" ref="username" type="text" /><br/>
-                <input className="login_password" placeholder="password" ref="password" type="password"/><br/>
+                <input className="login_username" placeholder="username" ref="username" type="text" required/><br/>
+                <input className="login_password" placeholder="password" ref="password" type="password" require/><br/>
                 <Button bsStyle="primary" bsSize="sm" type="submit">Log in</Button>
                 <div className="login_warning" id="warning"></div>
             </form>
