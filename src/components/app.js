@@ -1,33 +1,36 @@
 import React from 'react'
-import {Router, Route, IndexRoute, browserHistory} from 'react-router'
-
+import {Router, Route, IndexRoute, browserHistory, IndexRedirect} from 'react-router'
+import {Grid} from 'react-bootstrap'
 
 import Main from './main'
-import Login from './login'
+import LogIn from './login'
+import LogOut from './logout'
 import Home from './home'
 
 import Form from './form'
 import Result from './result'
-import Test from './test'
+import Inventory from './inventory'
 
-let loggedIn = true;
-let lvl = 2;
+import loggedIn from '../action'
+require('./style/default.less');
+
+let lvl = 6;
 function checkAuth(nextState, replace){
-    if(loggedIn != true){
-        alert("Log in first!")
+    if(localStorage.In!='true'){
+        alert('Please log in first')
         replace({
             pathname: ''
         })
     }
 }
 function checkLevel(nextState,replace){
-    if(loggedIn != true){
-        alert("Log in first!")
-        replace({
-            pathname: ''
-        })
-    }
-    else if(lvl <=3){
+    // if(In!= true){
+    //     alert(loggedIn)
+    //     replace({
+    //         pathname: ''
+    //     })
+    // }
+    if(localStorage.lvl <=3){
         alert("you are not authorized");
         replace({
             pathname:'home'
@@ -36,13 +39,14 @@ function checkLevel(nextState,replace){
 }
 
 export default (
+    <Grid>
     <Router history={browserHistory}>
-        <Route path="/" component={Login}/>
-        <Route component={Main}>
-            <Route path="home" component={Home} onEnter={checkAuth}/>
-            <Route path="test" >
+        <Route path="/" component={LogIn} />
+        <Route component={Main} onEnter={checkAuth}>
+            <Route path="home" component={Home}/>
+            <Route path="inventory" >
                 <Route component={Result} >
-                    <IndexRoute component={Test} onEnter={checkAuth}/>
+                    <IndexRoute component={Inventory}/>
                 </Route>
             </Route>
 
@@ -51,6 +55,8 @@ export default (
                     <IndexRoute component={Form} onEnter={checkLevel}/>
                 </Route>
             </Route>
+            <Route path="logout" component={LogOut}/>
         </Route>
     </Router>
+    </Grid>
 );

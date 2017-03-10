@@ -40,6 +40,7 @@ export default class Form extends React.Component{
     render(){
         return(
             <div >
+                <h1>Register user form</h1>
                 <form id="form" onSubmit={this.Submit}>
                     <input type="text" placeholder='username' ref="username" required/><br/>
                     <input type="password" placeholder='password' ref="password" required/><br/>
