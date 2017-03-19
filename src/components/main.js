@@ -24,6 +24,7 @@ export default class Main extends React.Component{
                     <NavItem eventKey="1" href="/home">Home</NavItem>
                     <NavItem eventKey="2" href="/inventory">Inventory</NavItem>
                     <NavItem eventKey="3" href="/form">Form</NavItem>
+                    <NavItem eventKey="3" href="/history">History</NavItem>
                 </Nav>
                 <Button bsStyle="primary" bsSize="sm" onClick={this.logOut}>Log out</Button>
                 <main>

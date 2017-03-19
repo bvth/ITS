@@ -1,20 +1,21 @@
-import React from 'react'
-import {Router, Route, IndexRoute, browserHistory, IndexRedirect} from 'react-router'
+import React from "react"
+import {Router, Route, IndexRoute, browserHistory, IndexRedirect} from "react-router"
 import {Grid} from 'react-bootstrap'
 
-import Main from './main'
-import LogIn from './login'
-import LogOut from './logout'
-import Home from './home'
+import Main from "./main"
+import LogIn from "./login"
+import LogOut from "./logout"
+import Home from "./home"
 
-import Form from './form'
-import Result from './result'
-import Inventory from './inventory'
+import Form from "./form"
+import Result from "./result"
+import Inventory from "./inventory"
+import History from "./history"
 
 import loggedIn from '../action'
 require('./style/default.less');
 
-let lvl = 6;
+// let lvl = 6;
 function checkAuth(nextState, replace){
     if(localStorage.In!='true'){
         alert('Please log in first')
@@ -49,7 +50,11 @@ export default (
                     <IndexRoute component={Inventory}/>
                 </Route>
             </Route>
-
+            <Route path="history">
+                <Route component={Result}>
+                    <IndexRoute component={History} onEnter={checkAuth}/>
+                </Route>
+            </Route>
             <Route path="form" >
                 <Route component={Result}>
                     <IndexRoute component={Form} onEnter={checkLevel}/>

@@ -10,6 +10,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
     router.post("/hello",function(req,res){
         res.json({"Message" : "Hello World !"});
     });
+//=====end=====//
 //=====show accounts=====//
     router.post("/show",function(req,res){
         var query = "SELECT * FROM ??";
@@ -24,6 +25,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     });
+//=====end=====//
 //=====check inventory=====//
     router.post("/inventory",function(req,res){
         var query = "SELECT * FROM ??";
@@ -38,6 +40,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     })
+//=====end=====//
 //=====check inventory on condition====//
     router.post("/search",function(req,res){
         var query;
@@ -59,7 +62,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
                 query = "SELECT * FROM ?? WHERE ??=?";
                 break;
             case "more":
-                query = "SELECT * FROM ?? WHERE ??>?";   
+                query = "SELECT * FROM ?? WHERE ??>?";
                 break;
         }
         var table = ["inventory",req.body.col,value];
@@ -74,6 +77,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     })
+//=====end=====//
 //=====LOG_IN=====//
     router.post('/login',function(req,res){
         var query = "SELECT ?? FROM ?? WHERE ??=? AND ??=?";
@@ -88,6 +92,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         })
     })
+//=====end=====//
 //=====show account with ID=====//
     router.post("/users/:user_id",function(req,res){
         var query = "SELECT * FROM ?? WHERE ??=?";
@@ -101,6 +106,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     });
+//=====end=====//
 //======Add account=====//
     router.post("/users",function(req,res){
         var query = "INSERT INTO ??(??,??,??,??,??) VALUES (?,?,?,?,?)";
@@ -117,6 +123,25 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     });
+//=====history=====//
+    router.post("/history",function(req,res){
+        var query = "SELECT *,DATE_FORMAT(?,?) AS ? FROM ?? WHERE ??=(SELECT ?? FROM ?? WHERE ??=?)";
+        var table = ["date","%m-%d-%y","date","history","inventory_inven_id","inven_id","inventory","title",req.body.title];
+        query = mysql.format(query,table);
+        console.log(req.body.title);
+        var inven_id;
+        connection.query(query,function(err,rows){
+            if(err){
+                console.log(err.code);
+            }
+            else{
+                console.log(rows);
+                res.json(rows);
+            }
+            }
+        )
+    })
+//=====end=====//
 //======update ID======//
     router.put("/users",function(req,res){
         var query = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
@@ -143,7 +168,7 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
             }
         });
     });
-
+//=====end=====//
 }
 
 module.exports = REST_ROUTER;
