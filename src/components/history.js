@@ -8,6 +8,7 @@ export default class History extends React.Component{
         super(props);
         this.Submit = this.handleSubmit.bind(this);
     }
+    //send request
     handleSubmit(event){
         event.preventDefault();
         var formBody;

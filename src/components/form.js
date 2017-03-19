@@ -5,6 +5,7 @@ export default class Form extends React.Component{
         super();
         this.Submit = this.handleSubmit.bind(this);
     }
+    //send data to database
     handleSubmit(event){
         event.preventDefault();
         var self = this;

@@ -25,18 +25,14 @@ export default class Inventory extends React.Component{
                 'cache-control': 'no-cache'
             },
         }).then(function(res){
-            // console.log(response);
             return res.json();
         }).then(function(body,replace){
-            // _.map(body.Users,(x,i)=>
                 content = body.Inventory;
                 browserHistory.replace("/inventory")
-            // )
         })
     }
     handleSubmit(event){
         event.preventDefault();
-        // let response = this.state.content.slice();
         var data={
             'col': col,
             'compare' : compa,
@@ -116,7 +112,7 @@ export default class Inventory extends React.Component{
                         <option value='less'>less than</option>
                         <option value='equals'>equals</option>
                         <option value='more'>more than</option>
-                    </select>                    
+                    </select>
                     <input type="text" ref="value"/>
                     <Button bsStyle="primary" bsSize="sm" type="submit">Submit</Button>
                 </form>

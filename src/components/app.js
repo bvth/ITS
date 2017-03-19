@@ -15,7 +15,7 @@ import History from "./history"
 import loggedIn from '../action'
 require('./style/default.less');
 
-// let lvl = 6;
+//check authorization
 function checkAuth(nextState, replace){
     if(localStorage.In!='true'){
         alert('Please log in first')
@@ -24,13 +24,8 @@ function checkAuth(nextState, replace){
         })
     }
 }
+//check level of authorization
 function checkLevel(nextState,replace){
-    // if(In!= true){
-    //     alert(loggedIn)
-    //     replace({
-    //         pathname: ''
-    //     })
-    // }
     if(localStorage.lvl <=3){
         alert("you are not authorized");
         replace({
