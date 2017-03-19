@@ -1,4 +1,4 @@
-#Inventory tracking system
+# Inventory tracking system
 
 The application lets users to interact with their database in a more simple way.
 Technology/library used in this project:
@@ -22,5 +22,5 @@ and wait until the process is done.
 
 USAGE
 Run command:
-	
+
 	`npm start`
